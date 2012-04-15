@@ -50,8 +50,7 @@
 		<ul>
 			{% can_add object_list name text %}
 	        {% for mymodel in object_list %}
-	            <li>{{ mymodel.name }}</li>
-	            <li>{{ mymodel.text }}</li>
+	            <li>{{ mymodel.name }} - {{ mymodel.text }}</li>
 	        {% endfor %}
 	        {% endcan_add %}
 	    </ul>

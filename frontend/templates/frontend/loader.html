@@ -1,9 +1,10 @@
 {% load i18n %}
 
 {% if user.is_staff %} 
-<link rel="stylesheet" href="{{ STATIC_URL }}css/frontend.css">
+<link rel="stylesheet" href="{{ STATIC_URL }}frontend/css/frontend.css">
 <script src="{{ STATIC_URL }}frontend/js/underscore.min.js"></script>
 <script src="{{ STATIC_URL }}frontend/js/jquery.tools.min.js"></script>
+<script src="{{ STATIC_URL }}frontend/js/jquery.form.min.js"></script>
 <script src="{{ STATIC_URL }}frontend/js/jquery-django-adminForm.js"></script>
 <script src="{{ STATIC_URL }}frontend/js/frontend.js"></script>
 {% endif %}

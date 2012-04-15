@@ -177,14 +177,12 @@ def admin_can(model, action="add", fail404=False, ajax=False):
             if not url:
                 url = "/"
             if not can(action, model, request.user):
-                if fail404:
-                    raise Http404
-                if ajax:
-                    return {"status":"false", "valid": "false"}
-                else:
-                    return HttpResponseRedirect(url)
+                if fail404: raise Http404
+                if ajax: return {"status":"false", "valid": "false"}
+                return HttpResponseRedirect(url)
             else:
                 response = view(request, *args, **kwargs)
+                if ajax: return response 
                 if not type(response) is HttpResponse:
                     return HttpResponseRedirect(url)
                 else:

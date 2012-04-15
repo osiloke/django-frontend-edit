@@ -27,7 +27,7 @@ def add(request):
     """
     model = get_model(request.POST["app"], request.POST["model"])
     obj = model()
-    form = get_model_form(request,obj, request.POST["fields"], data=request.POST,\
+    form = get_model_form(obj, request.POST["fields"], data=request.POST,\
                         files=request.FILES, parent_model_related_name=request.POST["parent_model_related_name"],\
                         parent_model=request.POST["parent_model"], \
                         parent_id = request.POST["parent_id"])
@@ -37,9 +37,12 @@ def add(request):
         saved_obj=form.save()
 
         'Create change message'
-        model_admin = ModelAdmin(model, admin.site)
-        message = model_admin.construct_change_message(request, form, None)
-        model_admin.log_change(request, obj, message)
+        try:
+            model_admin = ModelAdmin(model, admin.site)
+            message = model_admin.construct_change_message(request, form, None)
+            model_admin.log_change(request, saved_obj, message)
+        except Exception:
+            pass
         data = {
             'id': saved_obj.id,
             'valid': True,
@@ -72,7 +75,7 @@ def edit(request):
     """
     model = get_model(request.POST["app"], request.POST["model"])
     obj = model.objects.get(id=request.POST["id"])
-    form = get_model_form(request,obj, request.POST["fields"], data=request.POST,
+    form = get_model_form(obj, request.POST["fields"], data=request.POST,
                          files=request.FILES)
     if form.is_valid():
         form.save()
