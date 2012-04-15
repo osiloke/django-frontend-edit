@@ -23,6 +23,8 @@ def add(request):
     Process the add form.
     """
     model = get_model(request.POST["app"], request.POST["model"])
+    if not can("add", model, request.user):
+        return {"valid": True, "permissionerror":"You don't have permission to add!"}
     obj = model()
     form = get_model_form(obj, request.POST["fields"], data=request.POST,\
                         files=request.FILES, parent_model_related_name=request.POST["parent_model_related_name"],\
@@ -71,6 +73,8 @@ def edit(request):
     """
     try:
         model = get_model(request.POST["app"], request.POST["model"])
+        if not can("change", model, request.user):
+            return {"valid": True, "permissionerror":"You don't have permission to edit!"}
         obj = model.objects.get(id=request.POST["id"])
         form = get_model_form(obj, request.POST["fields"], data=request.POST,
                              files=request.FILES)
@@ -103,32 +107,19 @@ def edit(request):
             'errors': final_errors,
         }
 
-    return data
-
-def _handle_cancel(request, instance=None):
-    '''
-    Handles clicks on the 'Cancel' button in forms. Returns a redirect to the
-    last page, the user came from. If not given, to the detail-view of
-    the object. Last fallback is a redirect to the common success page.
-    '''
-    if request.POST.get('submit') == '_cancel':
-        if request.GET.get('next', False):
-            return HttpResponseRedirect(request.GET.get('next'))
-        if instance and hasattr(instance, 'get_absolute_url'):
-            return HttpResponseRedirect(instance.get_absolute_url())
-#        return HttpResponseRedirect(reverse('frontendadmin_success'))
-    return None
+    return data 
 
 def delete(request, app_label, model_name, instance_id):
      # Check for permission to add/change/delete this object
-    if not check_permission(request, "delete", app_label, model_name):
-        return HttpResponseForbidden('You have no permission to do this!')
+    
 
     try:
         model = get_model(app_label, model_name)
+        if not can("delete", model, request.user):
+            return HttpResponseForbidden('You have no permission to delete!')
     # Model does not exist
     except AttributeError:
-        return HttpResponseForbidden('This model does not exist!')
+        return HttpResponseForbidden('You cannot modify this item')
     # get the model and delete it
     model_instance = model.objects.get(pk=instance_id)
     model_instance.delete()
