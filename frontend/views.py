@@ -13,14 +13,11 @@ from django.views.decorators.http import require_POST
 from utilities import check_permission, LazyEncoder
 from forms import get_model_form
 
-from frontend.utilities import ajax_view, view_can
-
-from example.someapp.models import MyModel
+from frontend.utilities import ajax_view, view_can 
 
 json_serializer = LazyEncoder()
 
 @ajax_view()
-@view_can(MyModel, action="add", ajax=True)
 def add(request):
     """
     Process the add form.
@@ -68,7 +65,6 @@ def add(request):
 add = require_POST(add)
 
 @ajax_view()
-@view_can(MyModel, action="change", ajax=True)
 def edit(request):
     """
     Process the inline editing form.
