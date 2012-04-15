@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Django Frontend Edit by osilocks@twitter</title>
+	<title>Django Frontend Edit by osiloke.blogspot.com</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author" content="">
@@ -36,7 +36,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</a>
-				<a class="brand" href="#">Django Frontend Edit</a>
+				<a class="brand" href="#">Django Frontend Edit - Simple Todo App in 10 mins</a>
 				<div class="nav-collapse">
 					<ul class="nav">
 						<li class="active"><a href="#">Home</a></li>
@@ -47,13 +47,23 @@
 	</div>
 
 	<div class="container">
-		<ul>
-			{% can_add object_list name text %}
-	        {% for mymodel in object_list %}
-	            <li>{{ mymodel.name }} - {{ mymodel.text }}</li>
-	        {% endfor %}
-	        {% endcan_add %}
-	    </ul>
+		<h3>This is a simple todo app.</h3>{% can_add object_list text %} {% endcan_add %} 
+		<table class="table">
+        <thead>
+          <tr> 
+            <th>Todo</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody> 
+    	  {% for todoitem in object_list %}
+          <tr> 
+            <td>{{ todoitem.text }}</td> 
+            <td>{% can_delete todoitem %}</td>
+          </tr> 
+           {% endfor %}
+        </tbody>
+        </table> 
 		<hr>
 		<footer>
 			<p>&copy; Osiloke 2012</p>

@@ -20,13 +20,14 @@
 
 {# Original content wrapped in span #}
 <div class="addable-original-wrapper">
+    {# Edit link #}
+    <div class="addable-link-holder btn btn-mini">
+        <a class="addable-link" href="#" rel="#{{ form.uuid }}"><i class="icon-plus"></i>{% trans add_text %}</a>
+    </div> 
+
     <div class="addable-original-holder">
         {{ original }}
     </div>
-    {# Edit link #}
-    <div class="addable-link-holder">
-        <a class="addable-link" href="#" rel="#{{ form.uuid }}">{% trans "Add " %}{{ add_text }}</a>
-    </div> 
 </div> 
 
  

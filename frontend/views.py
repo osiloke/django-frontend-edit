@@ -69,10 +69,14 @@ def edit(request):
     """
     Process the inline editing form.
     """
-    model = get_model(request.POST["app"], request.POST["model"])
-    obj = model.objects.get(id=request.POST["id"])
-    form = get_model_form(obj, request.POST["fields"], data=request.POST,
-                         files=request.FILES)
+    try:
+        model = get_model(request.POST["app"], request.POST["model"])
+        obj = model.objects.get(id=request.POST["id"])
+        form = get_model_form(obj, request.POST["fields"], data=request.POST,
+                             files=request.FILES)
+    except Exception:
+        pass
+        
     if form.is_valid():
         form.save()
         model_admin = ModelAdmin(model, admin.site)

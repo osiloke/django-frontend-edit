@@ -146,7 +146,7 @@ class can_delete(InclusionTag):
     name = 'can_delete'
     template = 'frontend/deleteable_link.html'
     options = Options( Argument('obj'), Argument('label',required=False, resolve=False), )
-    def get_context(self, context, obj, label=None):
+    def get_context(self, context, obj, label, **kwargs):
          # Check if `model_object` is a model-instance
         if not isinstance(obj, Model):
             raise template.TemplateSyntaxError, "'%s' argument must be a model instance" % obj
@@ -162,7 +162,7 @@ class can_delete(InclusionTag):
             'label': label,
         }
         # Check for permission
-        if can('delete',obj, context["request"]):
+        if can('delete',obj, context["user"]):
             template_context['has_permission'] = True
         context.update(template_context)
         return context
