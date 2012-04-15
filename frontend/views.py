@@ -115,7 +115,6 @@ def _handle_cancel(request, instance=None):
 #        return HttpResponseRedirect(reverse('frontendadmin_success'))
     return None
 
-@view_can(MyModel, action="delete")
 def delete(request, app_label, model_name, instance_id):
      # Check for permission to add/change/delete this object
     if not check_permission(request, "delete", app_label, model_name):
