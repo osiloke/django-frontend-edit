@@ -1,0 +1,263 @@
+    /*
+    You'll notice this littered with !important declarations - this is due
+    to the inline-editing controls being injected into abitrary layouts and
+    this is my hackish attempt at trying to keep them consistant across
+    implementations by not being overridden by the stylesheets for each
+    particular site's layout. If there's a better way of doing this then go
+    right ahead and fix it.
+    */
+    .addable-original-wrapper{
+        position:relative;
+    }
+    .addable-link-holder{
+         position:absolute; 
+    }
+    .addable-highlight, .addable-link {
+        top: 0;
+        left :0;
+        z-index: 1000;
+        display: none;
+        position: relative;
+    }
+    #addable-loading {
+        z-index: 10000;
+        display: none;
+        position: absolute;
+    }
+    .addable-link {
+        color: #fff;
+        cursor: pointer;
+        white-space: nowrap;
+        -webkit-border-bottom-right-radius: 5px;
+        -moz-border-radius-bottomright: 5px;
+        border-bottom-right-radius: 5px;
+        border: none;
+
+        line-height: 1em;
+        padding: 4px;
+        -moz-box-shadow: 0 0 5px #999;
+        -webkit-box-shadow: 0 0 5px #999;
+
+        background: #000;
+        background: -moz-linear-gradient(top, #444, #3b3b3b);
+        background: -webkit-gradient(linear,left top, left bottom, from(#444), to(#3b3b3b));
+        filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#444', EndColorStr='#3b3b3b', GradientType=0);
+    }
+    .delete-link {
+ 
+        cursor: pointer;
+        white-space: nowrap;
+        /*-webkit-border-bottom-right-radius: 5px;*/
+        /*-moz-border-radius-bottomright: 5px;*/
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border: none;
+        line-height: 1em;
+        -moz-box-shadow: 0 0 5px #999;
+        -webkit-box-shadow: 0 0 5px #999;
+        text-decoration: none;
+        color: #fff !important;
+        font-size: 10px;
+        font-weight: normal;
+        padding: 4px;
+        background: #E33100;
+        /*background: -moz-linear-gradient(top, #444, #3b3b3b);*/
+        /*background: -webkit-gradient(linear,left top, left bottom, from(#444), to(#3b3b3b));*/
+        /*filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#444', EndColorStr='#3b3b3b', GradientType=0);*/
+    }
+    .addable-link, .widget-form-link {
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        padding: 5px 15px;
+        background:#749A02;
+    }
+    .addable-link, .widget-form-link{
+        text-decoration: none;
+        color: #fff !important;
+        font-size: 10px !important;
+        font-weight: normal;
+        padding: 2px;
+    }   
+    /* --- FORM ----------------- */
+    .addable-form {
+        padding: 20px;
+        background: #e0e0e0;
+        border: 1px solid #000;
+        -moz-box-shadow: 0 0 20px #000;
+        -webkit-box-shadow: 0 0 20px #000;
+        line-height: 1em;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    .addable-form table,
+    .addable-form textarea,
+    .addable-form input {
+        width: 100%;
+        margin: .5em 0;
+    }
+
+
+    {% if not settings.FORMS_USE_HTML5 %}
+    .addable-form input.datetimefield {
+        width: 80px;
+        margin-left: 8px;
+    }
+    {% endif %}
+
+    .addable-form input[type="file"] {
+        width: 300px;
+    }
+    .addable-form p {
+        margin: 0 !important;
+        padding: 0 !important;
+        line-height: 0 !important;
+    }
+    .addable-form p:first-child {
+        margin-top: 0px;
+    }
+    .addable-form .helptext {
+        display: block;
+        margin: 8px;
+        font-size: 70%;
+        color: #444;
+        font-style: italic;
+    }
+    .addable-form label {
+        text-transform: capitalize !important;
+        font-weight: bold !important;
+        line-height: 16px !important;
+        font-size: 12px !important;
+        color: #444 !important;
+    }
+    .addable-form .button {
+        color: #fff;
+        cursor: pointer;
+        float: right;
+        font-size: 12px;
+        height: 25px;
+        margin: 15px 0 0 15px;
+        padding: 5px 15px;
+        width: auto;
+
+        background: -moz-linear-gradient(top, #309BBF, #2B8DAD);
+        background: -webkit-gradient(linear,left top, left bottom, from(#309BBF), to(#2B8DAD));
+        filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#309BBF', EndColorStr='#2B8DAD', GradientType=0);
+
+        border: none;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+    }
+
+    .addable-form .button:hover, .addable-form input[type="button"].button:hover {
+        background: -moz-linear-gradient(top, #444, #3b3b3b);
+        background: -webkit-gradient(linear,left top, left bottom, from(#444), to(#3b3b3b));
+        filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#444', EndColorStr='#3b3b3b', GradientType=0);
+    }
+
+    .addable-form input[type="button"].button {
+        background: -moz-linear-gradient(top, #ACD7E5, #A4CEDB);
+        background: -webkit-gradient(linear,left top, left bottom, from(#ACD7E5), to(#A4CEDB));
+        filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#ACD7E5', EndColorStr='#A4CEDB', GradientType=0);
+    }
+    
+    /* --- FORM ----------------- */
+        .popup-form {
+            padding: 20px;
+            background: #e0e0e0;
+            border: 1px solid #000;
+            -moz-box-shadow: 0 0 20px #000;
+            -webkit-box-shadow: 0 0 20px #000;
+            line-height: 1em;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+    
+        .popup-form table,
+        .popup-form textarea,
+        .popup-form input {
+            width: 100%;
+            margin: .5em 0;
+        }
+    
+    
+        {% if not settings.FORMS_USE_HTML5 %}
+        .popup-form input.datetimefield {
+            width: 80px;
+            margin-left: 8px;
+        }
+        {% endif %}
+    
+        .popup-form input[type="file"] {
+            width: 300px;
+        }
+        .popup-form p {
+            margin: 0 !important;
+            padding: 0 !important;
+            line-height: 0 !important;
+        }
+        .popup-form p:first-child {
+            margin-top: 0px;
+        }
+        .popup-form .helptext {
+            display: block;
+            margin: 8px;
+            font-size: 70%;
+            color: #444;
+            font-style: italic;
+        }
+        .popup-form label {
+            text-transform: capitalize !important;
+            font-weight: bold !important;
+            line-height: 16px !important;
+            font-size: 12px !important;
+            color: #444 !important;
+        }
+        .popup-form .button {
+            color: #fff;
+            cursor: pointer;
+            float: right;
+            font-size: 12px;
+            height: 25px;
+            margin: 15px 0 0 15px;
+            padding: 5px 15px;
+            width: auto;
+    
+            background: -moz-linear-gradient(top, #309BBF, #2B8DAD);
+            background: -webkit-gradient(linear,left top, left bottom, from(#309BBF), to(#2B8DAD));
+            filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#309BBF', EndColorStr='#2B8DAD', GradientType=0);
+    
+            border: none;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+    
+        .popup-form .button:hover, .popup-form input[type="button"].button:hover {
+            background: -moz-linear-gradient(top, #444, #3b3b3b);
+            background: -webkit-gradient(linear,left top, left bottom, from(#444), to(#3b3b3b));
+            filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#444', EndColorStr='#3b3b3b', GradientType=0);
+        }
+    
+        .popup-form input[type="button"].button {
+            background: -moz-linear-gradient(top, #ACD7E5, #A4CEDB);
+            background: -webkit-gradient(linear,left top, left bottom, from(#ACD7E5), to(#A4CEDB));
+            filter: progid:DXImageTransform.Microsoft.Gradient(StartColorStr='#ACD7E5', EndColorStr='#A4CEDB', GradientType=0);
+        }
+</style>
+<script type="text/javascript" charset="utf-8">
+$(function($){
+    // if(typeof jQuery.ui == 'undefined'){ 
+    //     document.write('<scr'+'ipt type="text/javascript" src="{{ STATIC_URL }}frontend/js/jquery-ui-1.8.18.custom.min.js"></sc'+'ript>');
+    // }
+    // if(typeof _ == 'undefined'){ 
+    //     document.write('<scr'+'ipt type="text/javascript" src="{{ STATIC_URL }}frontend/js/underscore.min.js"></sc'+'ript>');
+    // } 
+    // document.write('<scr'+'ipt type="text/javascript" src="http://cdn.jquerytools.org/1.2.7/full/jquery.tools.min.js"></sc'+'ript>');
+    // document.write('<scr'+'ipt type="text/javascript" src="{{ STATIC_URL }}frontend/js/jquery-django-adminForm.js"></sc'+'ript>');
+});

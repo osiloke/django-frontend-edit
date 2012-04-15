@@ -1,4 +1,4 @@
-(function($) {
+(function(jQuery) {
     function inputs(form)   {
         return form.find(":input:visible:not(:button)");
     }
